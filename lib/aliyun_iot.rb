@@ -44,7 +44,7 @@ module AliyunIot
           end
           config = config[Rails.env] if defined? Rails
         end
-        OpenStruct.new(config || {access_id: "", key: "", region: "", product_key: "", owner_id: ""})
+        OpenStruct.new(config || {access_key_id: "", access_key_secret: "", end_point: "", base_url: "", region_id: "", product_key: ""})
       end
     end
 
