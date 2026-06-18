@@ -1,3 +1,4 @@
+require 'logger'
 require 'active_support'
 require 'active_support/core_ext'
 require 'rest-client'
@@ -35,7 +36,12 @@ module AliyunIot
         end
 
         if (File.exist?(config_file))
-          config = YAML.load(ERB.new(File.new(config_file).read).result)
+          yaml = ERB.new(File.new(config_file).read).result
+          config = begin
+            YAML.safe_load(yaml, aliases: true)
+          rescue ArgumentError
+            YAML.safe_load(yaml, [], [], true)
+          end
           config = config[Rails.env] if defined? Rails
         end
         OpenStruct.new(config || {access_id: "", key: "", region: "", product_key: "", owner_id: ""})

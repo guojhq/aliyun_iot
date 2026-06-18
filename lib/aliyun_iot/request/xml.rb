@@ -1,4 +1,5 @@
 require 'base64'
+require 'digest/md5'
 require_relative 'http_client'
 module AliyunIot
   module Request
@@ -50,7 +51,7 @@ module AliyunIot
           end
         end
         @body = builder.to_xml
-        @content_md5 = Base64::encode64(Digest::MD5.hexdigest(body)).chop
+        @content_md5 = Base64::encode64(Digest::MD5.digest(body)).chop
         @content_length = body.size
         @content_type = "text/xml;charset=utf-8"
       end

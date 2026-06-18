@@ -1,8 +1,6 @@
 require "aliyun_iot/request/xml"
 
 module AliyunIot
-  include ERB::Util
-
   class Topic
     attr_reader :name, :subscription_name
     delegate :to_s, to: :name
@@ -49,7 +47,7 @@ module AliyunIot
           last_modify_time: topic_hash["Topic"]["LastModifyTime"],
           maximum_message_size: topic_hash["Topic"]["MaximumMessageSize"],
           message_retention_period: topic_hash["Topic"]["MessageRetentionPeriod"],
-          message_ount: topic_hash["Topic"]["MessageCount"],
+          message_count: topic_hash["Topic"]["MessageCount"],
           logging_enabled: topic_hash["Topic"]["LoggingEnabled"]
       }
 
