@@ -1,8 +1,6 @@
 require "aliyun_iot/request/json"
 
 module AliyunIot
-  include ERB::Util
-
   class Product
     attr_reader :key
     delegate :to_s, to: :key
